@@ -1,0 +1,29 @@
+﻿{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:59570",
+      "sslPort": 44389
+    }
+  },
+  "profiles": {
+    "Concessionaria": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchUrl": "Carros",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:7272;http://localhost:5272",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
