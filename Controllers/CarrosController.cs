@@ -53,5 +53,69 @@ namespace Concessionaria.Controllers
             }
             return View(carro);
         }
+        [HttpGet]
+        public async Task<IActionResult> Delete (Guid? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var carro = await _appContext.Carros.FindAsync(id);
+            if (carro == null)
+            {
+                return BadRequest();
+            }
+            return View(carro);
+        }
+        [HttpPost, ActionName("Delete")]    
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(Guid? id)
+        {
+            var carro = await _appContext.Carros.FindAsync(id);
+            _appContext.Carros.Remove(carro);
+            await _appContext.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit (Guid? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var carro = await _appContext.Carros.FindAsync(id);
+            if (carro == null)
+            {
+                return BadRequest();
+            }
+            return View(carro);
+        }
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Guid? id, Carros carro, IList<IFormFile> Img)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var dadosAntigos = _appContext.Carros.AsNoTracking().FirstOrDefault(p => p.Id == id);
+            IFormFile uploadedImage = Img.FirstOrDefault();
+            MemoryStream ms = new MemoryStream();
+            if (Img.Count > 0)
+            {
+                uploadedImage.OpenReadStream().CopyTo(ms);
+                carro.Foto =  ms.ToArray();
+            }
+            else
+            {
+                carro.Foto = dadosAntigos.Foto;
+            }
+            if (ModelState.IsValid)
+            {
+                _appContext.Update(carro);
+                await _appContext.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(carro);
+        }
     }
 }
