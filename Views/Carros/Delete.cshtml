@@ -1,0 +1,65 @@
+﻿@model Concessionaria.Models.Carros
+
+@{
+    ViewData["Title"] = "Apagar Cadastro de Veículo";
+}
+<h1>Apagar Cadastro</h1>
+<h3>Você tem certeza que deseja apagar este cadastro?</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Modelo" class="control-label"></label>
+            <input asp-for="Modelo" class="form-control" readonly />
+            <span asp-validation-for="Modelo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Marca" class="control-label"></label>
+            <input asp-for="Marca" class="form-control" readonly />
+            <span asp-validation-for="Marca" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Ano" class="control-label"></label>
+            <input asp-for="Ano" class="form-control" readonly />
+            <span asp-validation-for="Ano" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Km" class="control-label"></label>
+            <input asp-for="Km" class="form-control" readonly />
+            <span asp-validation-for="Km" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Combustivel" class="control-label"></label>
+            <input asp-for="Combustivel" class="form-control" readonly />
+            <span asp-validation-for="Combustivel" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Valor" class="control-label"></label>
+            <input asp-for="Valor" class="form-control" readonly />
+            <span asp-validation-for="Valor" class="text-danger"></span>
+        </div>
+        <div class="form-group" style="margin-top:10px">
+            @{
+                    try
+                    {
+                        var base64 = Convert.ToBase64String(@Model.Foto);
+                        if (!string.IsNullOrEmpty(base64))
+                        {
+                            var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+                            <img class="img-fluid" src="@imgSrc" width="300"  />
+                        }
+                    }
+                    catch
+                    {
+                        <img class="img-fluid" src="https://images4.alphacoders.com/117/thumb-1920-1179608.png" width="70" />
+                    }
+             }
+        </div>
+        <form asp-action="Delete" style="margin-top: 10px">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Apagar" class="btn btn-danger btn-sm" />
+            <a class="btn btn-secondary text-white btn-sm" asp-action="Index"> Voltar </a>
+        </form> 
+    </div>
+</div>

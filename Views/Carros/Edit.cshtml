@@ -1,0 +1,48 @@
+﻿@model Concessionaria.Models.Carros
+
+@{
+    ViewData["Title"] = "Editar";
+}
+<h1>Editar Cadastro</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label asp-for="Modelo" class="control-label"></label>
+            <input asp-for="Modelo" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Marca" class="control-label"></label>
+            <input asp-for="Marca" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Ano" class="control-label"></label>
+            <input asp-for="Ano" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Km" class="control-label"></label>
+            <input asp-for="Km" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Combustivel" class="control-label"></label>
+            <input asp-for="Combustivel" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Valor" class="control-label"></label>
+            <input asp-for="Valor" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Foto" class="control-label">Trocar Imagem</label>
+            <input type="file" name="Img" id="Img" class="form-control" />
+            <span asp-validation-for="Foto" class="text-danger"></span>
+        </div>
+        <div class="form-group" style="margin-top:10px"> 
+         <input type="submit" value="Inserir" class="btn btn-primary btn-sm" />
+            <a class="btn btn-secondary text-white btn-sm" asp-action="Index">Voltar</a>
+        </div>
+        </form>
+    </div>
+</div>
